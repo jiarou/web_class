@@ -1,0 +1,303 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>HW1</title>
+<link href="index.css" rel="stylesheet" type="text/css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+
+<script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCvhJth_urzb92B3JB1sWa2G3Sr82i-7yM",
+    authDomain: "jiarou-demo.firebaseapp.com",
+    databaseURL: "https://jiarou-demo.firebaseio.com",
+    projectId: "jiarou-demo",
+    storageBucket: "jiarou-demo.appspot.com",
+    messagingSenderId: "819461351023"
+
+  };
+  firebase.initializeApp(config);      
+
+</script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.js"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.css" />
+
+   <script src="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.css" />
+    <script type="text/javascript">
+      // FirebaseUI config.
+      var uiConfig = {
+        signInSuccessUrl: '<url-to-redirect-to-on-success>',
+        signInOptions: [
+          // Leave the lines as is for the providers you want to offer your users.
+          firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+          
+        ],
+        // Terms of service url.
+        tosUrl: '<your-tos-url>'
+      };
+
+      // Initialize the FirebaseUI Widget using Firebase.
+      var ui = new firebaseui.auth.AuthUI(firebase.auth());
+      // The start method will wait until the DOM is loaded.
+      ui.start('#firebaseui-auth-container', uiConfig);
+    </script>
+    <script type="text/javascript">
+      initApp = function() {
+        firebase.auth().onAuthStateChanged(function(user) {
+          if (user) {
+            // User is signed in.
+            var displayName = user.displayName;
+            var email = user.email;
+            var emailVerified = user.emailVerified;
+            var photoURL = user.photoURL;
+            var uid = user.uid;
+            var providerData = user.providerData;
+            user.getToken().then(function(accessToken) {
+              document.getElementById('sign-in-status').textContent = 'Signed in';
+              document.getElementById('sign-in').textContent = 'Sign out';
+              document.getElementById('account-details').textContent = JSON.stringify({
+                displayName: displayName,
+                email: email,
+                emailVerified: emailVerified,
+                photoURL: photoURL,
+                uid: uid,
+                accessToken: accessToken,
+                providerData: providerData
+              }, null, '  ');
+            });
+          } else {
+            // User is signed out.
+            document.getElementById('sign-in-status').textContent = 'Signed out';
+            document.getElementById('sign-in').textContent = 'Sign in';
+            document.getElementById('account-details').textContent = 'null';
+          }
+        }, function(error) {
+          console.log(error);
+        });
+      };
+
+      window.addEventListener('load', function() {
+        initApp()
+      document.form.name.value=displayName;  
+      });
+    </script>
+
+
+
+
+</head>
+
+<body>
+<div  class="container-fluid">
+<div class="row">
+<div  class="col-sm-8">
+<h3><a href="http://technews.tw/2017/03/11/google-designed-security-chip-titan/">Google 又自己設計了一顆晶片，這次是為了安全</a></h3>
+<h6 style="border-bottom:solid medium black;">作者 數位時代 | 發布日期 2017 年 03 月 11 日 12:00 | 分類 Google , 晶片 , 雲端</h6>
+ <input type="button" value="字體變大" onClick="SizeToLarge()">
+ <input type="button" value="字體變小" onClick="SizeTosmall()">
+<div class="content_img">
+<img id="test" width="624" height="350" alt=""/> 
+</div>
+<p>為了提高機器學習的效能，Goolge 2016 年 5 月在 Google I/O 上宣布自行打造了機器學習處理器 TPU（Tensor Processing Unit）；而在美國時間 9 日的 Google Cloud Next 雲端大會上，Google 再宣布，為了雲端平台的安全性，他們自己設計了名為 Titan 的安全晶片。</p>
+
+<p>目前 Google 的資料中心主晶片還是採用和英特爾（Intel）合作的客製化處理器，目前已經進入第六代，而不久前英特爾也宣布 Google 將會是第一個採用英特爾新一代 Skylake 處理器架構的資料中心客戶。不過為了強化特定使用目的，Google 約自 2015 年起，就開始在自家資料中心部屬自行設計的特殊應用晶片，第一次是為了機器學習的需求，而這次則是在安全性上下工夫。</p>
+
+<p>信任可以說是阻礙企業上雲端的最大阻礙之一，而安全性則是獲取客戶信任感的一大關鍵，因此一直以來，Google 都不忘強調他們在安全上做了多少努力，包括目前有超過 700 名安全人員的投入，或是在軟、硬體的多層級防護等等。</p>
+
+
+<p>而在 9 日的 Google Cloud Next 主題演講上，宣布新的 Google 雲端服務促銷降價方案後，Google 技術基礎架構資深副總裁烏爾斯．霍爾澤（Urs Hölzle）隨手從耳環上取下一個非常小的晶片，他說：「低價不代表低安全性。」</p>
+<div class="content_img">
+<img id="test1" width="640" height="359" alt=""/>
+<div class="note"><strong>Google 資深副總裁霍爾澤手上拿的就是 Titan。</strong></div>
+</div>
+<div class="content_img">
+
+<img id="test2" width="640" height="359" alt=""/> 
+<div class="note"><strong>Google 資深副總裁霍爾澤表示，低價不代表安全性也低。</strong></div>
+
+</div>
+<p>他手上拿的晶片就是 Titan，一個客製化的低功耗微控制器，具備硬體隨機碼產生器、獨立記憶體運作，和身分認證等基於硬體的多重安全性設計，目前已經部屬在 Google 的伺服器上。</p>
+
+<p>而可以預期，在 TPU 和 Titan 之後，Google 未來還會自行開發更多的特殊應用晶片。</p>
+
+<h6>（本文由 數位時代 授權轉載)</h6>
+<h3 style="color:red;">延伸閱讀：</h3>
+<ul>
+<li><a href="https://technews.tw/2017/03/10/google-corporate-market/" style="color: #21759b;">端出成績單，Google 證明：「我們對企業市場是認真的！」</a></li>
+
+</ul>
+
+</div>
+<div  class="col-sm-4">
+
+  <a href="http://www5.technews.tw/www/delivery/ck.php?oaparams=2__bannerid=239__zoneid=45__cb=ba8ec380f8__oadest=https%3A%2F%2Fwww.sap.com%2Ftaiwan%2Fcmp%2Fdg%2Fcrm-tw17-sap-ntrdtq1%2Findex.html%3Fcampaigncode%3DCRM-TW17-XEV-DIGQ1"><img id="test3" width="300" height="600" alt=""/></a>
+  
+  
+  <div>
+  <span style="font-weihgt:900">本週熱門</span>
+  <ol>
+  <li><a href="http://technews.tw/2017/03/07/john-goodenough-all-solid-state-battery/">鋰電池之父發明全固態電池，充電只需數分鐘</a></li>
+  <li><a href="http://finance.technews.tw/2017/03/05/tw-real-estate-foreign-investment/">外資來了，台灣房地產有望復甦？別傻了！台灣房地產已是沒人收的「世界爛攤」</a></li>
+  <li><a href="http://technews.tw/2017/03/12/iphone-8-money/">iPhone 8 二兆商機，蘋概股樂得兩頭賺</a></li>
+  <li><a href="http://finance.technews.tw/2017/03/12/why-terry-gou-want-toshiba/">【拓墣觀點】不只速度快，5G 帶來 4G 無法取代的新價值</a></li>
+  </ol>
+  </div>
+  
+  </div>
+ </div>
+
+
+
+<footer>
+<div id="copy">
+<table style="border=1">
+<tr>
+<th>參考資料：</th>
+</tr>
+<tr>
+<td>copyright</td>
+<td> </td>
+<td> <a href="http://technews.tw/2017/03/11/google-designed-security-chip-titan/">TechNews科技新報</a></td>
+</tr>
+<tr>
+<td>w3schools.com</td>
+</tr>
+
+</table>
+
+
+</div>
+<p>
+    <a href="http://jigsaw.w3.org/css-validator/check/referer">
+        <img style="border:0;width:88px;height:31px"
+            src="http://jigsaw.w3.org/css-validator/images/vcss"
+            alt="Valid CSS!" />
+    </a>
+</p>
+
+
+
+    <div id="sign-in-status"></div>
+    <div id="sign-in"></div>
+
+
+<div  style="margin-bottom: 10px;">     
+<form name='form' id='form' > 
+  <div id="firebaseui-auth-container"></div>
+  姓名：<input type='text' name='name' id='name' style="margin: 10px;"/>  <br>
+  留言：
+  <textarea cols="50" rows="5" id='message' >
+</textarea>
+  <input type='button' name='submit' value='送出' onclick='processFormData();' />
+</form>
+</div>
+
+
+</div>
+
+
+</footer>
+
+
+
+<div id="backtotop" >
+
+</div>
+
+
+
+</body>
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+<script src="index.js"></script>
+
+<script>
+    var storageRef = firebase.storage().ref();
+    function processFormData() {
+    var name_element = document.getElementById('name');
+    var name = name_element.value;
+    var message_element = document.getElementById('message');
+    var message = message_element.value;
+    var number = Math.floor((Math.random() * 100) + 1);
+    var file_name = "secret-message-"+name+number+".txt"
+    var afuRef = storageRef.child('texts').child(file_name);
+    afuRef.putString(message).then(function(snapshot) {
+    console.log('成功上傳純 字檔案');
+    console.log(message); });
+
+
+
+
+
+}
+    
+    storageRef.child('img/1.jpg').getDownloadURL().then(function(url) {
+  // `url` is the download URL for 'images/stars.jpg
+  //  inserted into an <img> element:
+  var img = document.getElementById('test');
+  img.src = url;
+}).catch(function(error) {
+  // Handle any errors
+});
+
+    storageRef.child('img/2.jpg').getDownloadURL().then(function(url) {
+  // `url` is the download URL for 'images/stars.jpg
+  //  inserted into an <img> element:
+  var img = document.getElementById('test1');
+  img.src = url;
+}).catch(function(error) {
+  // Handle any errors
+});
+
+  storageRef.child('img/3.jpg').getDownloadURL().then(function(url) {
+  // `url` is the download URL for 'images/stars.jpg
+  //  inserted into an <img> element:
+  var img = document.getElementById('test2');
+  img.src = url;
+}).catch(function(error) {
+  // Handle any errors
+});
+
+
+
+  storageRef.child('img/4.jpg').getDownloadURL().then(function(url) {
+  // `url` is the download URL for 'images/stars.jpg
+  //  inserted into an <img> element:
+  var img = document.getElementById('test3');
+  img.src = url;
+}).catch(function(error) {
+  // Handle any errors
+});
+</script>
+
+
+<!--  會員登入功能
+// <script type="text/javascript">
+// var provider = new firebase.auth.GoogleAuthProvider();
+
+
+
+// function divFunction(){
+// firebase.auth().getRedirectResult().then(function(result) {
+// var provider = new firebase.auth.GoogleAuthProvider();
+//  provider.addScope('profile');
+//  provider.addScope('email');
+//  provider.addScope('https://www.googleapis.com/auth/plus.login');
+//  firebase.auth().signInWithPopup(provider); // Opens a popup window and returns a promise to handle errors.
+//  });
+
+// }
+
+//     </script>
+ -->
+
+</html>
