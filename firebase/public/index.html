@@ -34,14 +34,14 @@
     <script type="text/javascript">
       // FirebaseUI config.
       var uiConfig = {
-        signInSuccessUrl: '<url-to-redirect-to-on-success>',
+        signInSuccessUrl: 'https://jiarou-demo.firebaseapp.com/',
         signInOptions: [
           // Leave the lines as is for the providers you want to offer your users.
           firebase.auth.GoogleAuthProvider.PROVIDER_ID,
           
         ],
         // Terms of service url.
-        tosUrl: '<your-tos-url>'
+        tosUrl: 'https://jiarou-demo.firebaseapp.com/'
       };
 
       // Initialize the FirebaseUI Widget using Firebase.
@@ -187,11 +187,15 @@
 
     <div id="sign-in-status"></div>
     <div id="sign-in"></div>
+    <div id="firebaseui-auth-container" ></div> 
 
 
-<div  style="margin-bottom: 10px;">     
+<div  style="margin-bottom: 10px;background-color:#FFFF77;" > 
+ 
+
+<h1>留言給我：</h1>   
 <form name='form' id='form' > 
-  <div id="firebaseui-auth-container"></div>
+ 
   姓名：<input type='text' name='name' id='name' style="margin: 10px;"/>  <br>
   留言：
   <textarea cols="50" rows="5" id='message' >
@@ -230,12 +234,17 @@
     var number = Math.floor((Math.random() * 100) + 1);
     var file_name = "secret-message-"+name+number+".txt"
     var afuRef = storageRef.child('texts').child(file_name);
+    
+
     afuRef.putString(message).then(function(snapshot) {
     console.log('成功上傳純 字檔案');
     console.log(message); });
 
+    //window.location.reload();
 
-
+    setTimeout(function(){
+   window.location.reload(1);
+}, 3000);
 
 
 }
